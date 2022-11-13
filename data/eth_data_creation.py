@@ -18,13 +18,15 @@ def emissions_to_csv(df):
     low, high, best = df["lower"].to_numpy(), df["upper"].to_numpy(), df["best"].to_numpy()
     values = []
     for i in range(len(low)): # len(low) == len(high) == len(best)
+
         avg =  ( low[i] + high[i] + best[i] ) / 3
+        print(low[i], high[i], best[i], avg)
         values.append(avg)
 
     csvarr = []
-    for i in range(len(values)):
-        csvarr.append((dates[i], values[i]))
-    pd.DataFrame(csvarr).to_csv("eth-emissions.csv")
+    # for i in range(len(values)):
+    #     csvarr.append((dates[i], values[i]))
+    # pd.DataFrame(csvarr).to_csv("eth-emissions.csv", index = False)
 
 if __name__ == "__main__":
     hash_rates_df = pd.read_csv("data/Ethereum-all-time-hash-rate.csv")
